@@ -51,7 +51,7 @@ module "aware_resource_group" {
 }
 
 module "aware_storage_account" {
-  source = "aware_naming/storage-account/azurerm"
+  source = "weareretail/storage-account/azurerm"
 
   resource_group_name = module.aware_resource_group.name
   description         = "Test storage-account"
