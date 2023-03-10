@@ -1,6 +1,6 @@
 # Azure Aware Storage Account
 
-[![Build Status](https://dev.azure.com/umanis-consulting/terraform/_apis/build/status/mod_azu_storage_account?repoName=mod_azu_storage_account&branchName=master)](https://dev.azure.com/umanis-consulting/terraform/_build/latest?definitionId=9&repoName=mod_azu_storage_account&branchName=master) [![Unilicence](https://img.shields.io/badge/licence-The%20Unilicence-green)](LICENCE)
+[![Build Status](https://dev.azure.com/weareretail/Tooling/_apis/build/status/mod_azu_storage_account?repoName=mod_azu_storage_account&branchName=master)](https://dev.azure.com/weareretail/Tooling/_build/latest?definitionId=2&repoName=mod_azu_storage_account&branchName=master) [![Unilicence](https://img.shields.io/badge/licence-The%20Unilicence-green)](LICENCE)
 
 Common Azure Terraform module to create a Storage Account.
 
