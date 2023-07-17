@@ -23,12 +23,21 @@ output "storage_account_primary_web_host" {
   value       = azurerm_storage_account.self.primary_web_host
 }
 
+output "storage_primary_queue_endpoint" {
+  description = "The primary queue endpoint of the storage account"
+  value       = azurerm_storage_account.self.primary_queue_endpoint
+}
+
+output "storage_secondary_queue_endpoint" {
+  description = "The secondary queue endpoint of the storage account"
+  value       = azurerm_storage_account.self.secondary_queue_endpoint
+}
+
 output "storage_primary_connection_string" {
   description = "The primary connection string for the storage account"
   value       = azurerm_storage_account.self.primary_connection_string
   sensitive   = true
 }
-
 
 output "storage_account_secondary_location" {
   description = "The secondary location of the storage account"
