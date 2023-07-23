@@ -23,6 +23,16 @@ output "storage_account_primary_web_host" {
   value       = azurerm_storage_account.self.primary_web_host
 }
 
+output "storage_primary_blob_endpoint" {
+  description = "The primary blob endpoint of the storage account"
+  value       = azurerm_storage_account.self.primary_blob_endpoint
+}
+
+output "storage_secondary_blob_endpoint" {
+  description = "The secondary blob endpoint of the storage account"
+  value       = azurerm_storage_account.self.secondary_blob_endpoint
+}
+
 output "storage_primary_queue_endpoint" {
   description = "The primary queue endpoint of the storage account"
   value       = azurerm_storage_account.self.primary_queue_endpoint

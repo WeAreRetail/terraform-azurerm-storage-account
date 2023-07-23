@@ -117,9 +117,11 @@ module "aware_storage_account" {
 | <a name="output_storage_account_secondary_web_endpoint"></a> [storage\_account\_secondary\_web\_endpoint](#output\_storage\_account\_secondary\_web\_endpoint) | The endpoint URL for web storage in the secondary location. |
 | <a name="output_storage_account_secondary_web_host"></a> [storage\_account\_secondary\_web\_host](#output\_storage\_account\_secondary\_web\_host) | The hostname with port if applicable for web storage in the secondary location. |
 | <a name="output_storage_primary_access_key"></a> [storage\_primary\_access\_key](#output\_storage\_primary\_access\_key) | The primary access key for the storage account |
+| <a name="output_storage_primary_blob_endpoint"></a> [storage\_primary\_blob\_endpoint](#output\_storage\_primary\_blob\_endpoint) | The primary blob endpoint of the storage account |
 | <a name="output_storage_primary_connection_string"></a> [storage\_primary\_connection\_string](#output\_storage\_primary\_connection\_string) | The primary connection string for the storage account |
 | <a name="output_storage_primary_queue_endpoint"></a> [storage\_primary\_queue\_endpoint](#output\_storage\_primary\_queue\_endpoint) | The primary queue endpoint of the storage account |
 | <a name="output_storage_secondary_access_key"></a> [storage\_secondary\_access\_key](#output\_storage\_secondary\_access\_key) | The primary access key for the storage account. |
+| <a name="output_storage_secondary_blob_endpoint"></a> [storage\_secondary\_blob\_endpoint](#output\_storage\_secondary\_blob\_endpoint) | The secondary blob endpoint of the storage account |
 | <a name="output_storage_secondary_connection_string"></a> [storage\_secondary\_connection\_string](#output\_storage\_secondary\_connection\_string) | The secondary connection string for the storage account |
 | <a name="output_storage_secondary_queue_endpoint"></a> [storage\_secondary\_queue\_endpoint](#output\_storage\_secondary\_queue\_endpoint) | The secondary queue endpoint of the storage account |
 | <a name="output_tables"></a> [tables](#output\_tables) | Map of Storage tables. |
