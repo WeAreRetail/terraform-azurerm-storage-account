@@ -120,14 +120,16 @@ module "aware_storage_account" {
 | <a name="output_storage_primary_blob_endpoint"></a> [storage\_primary\_blob\_endpoint](#output\_storage\_primary\_blob\_endpoint) | The primary blob endpoint of the storage account |
 | <a name="output_storage_primary_connection_string"></a> [storage\_primary\_connection\_string](#output\_storage\_primary\_connection\_string) | The primary connection string for the storage account |
 | <a name="output_storage_primary_queue_endpoint"></a> [storage\_primary\_queue\_endpoint](#output\_storage\_primary\_queue\_endpoint) | The primary queue endpoint of the storage account |
+| <a name="output_storage_primary_table_endpoint"></a> [storage\_primary\_table\_endpoint](#output\_storage\_primary\_table\_endpoint) | The primary table endpoint of the storage account |
 | <a name="output_storage_secondary_access_key"></a> [storage\_secondary\_access\_key](#output\_storage\_secondary\_access\_key) | The primary access key for the storage account. |
 | <a name="output_storage_secondary_blob_endpoint"></a> [storage\_secondary\_blob\_endpoint](#output\_storage\_secondary\_blob\_endpoint) | The secondary blob endpoint of the storage account |
 | <a name="output_storage_secondary_connection_string"></a> [storage\_secondary\_connection\_string](#output\_storage\_secondary\_connection\_string) | The secondary connection string for the storage account |
 | <a name="output_storage_secondary_queue_endpoint"></a> [storage\_secondary\_queue\_endpoint](#output\_storage\_secondary\_queue\_endpoint) | The secondary queue endpoint of the storage account |
+| <a name="output_storage_secondary_table_endpoint"></a> [storage\_secondary\_table\_endpoint](#output\_storage\_secondary\_table\_endpoint) | The secondary table endpoint of the storage account |
 | <a name="output_tables"></a> [tables](#output\_tables) | Map of Storage tables. |
 <!-- END_TF_DOCS -->
 
-## Related documentation
+## Related Documentation
 
 Terraform Azure resource group documentation: [https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account)
 
