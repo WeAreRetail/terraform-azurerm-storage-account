@@ -73,6 +73,13 @@ resource "azurerm_storage_account" "self" {
       bypass                     = var.network_rules.bypass
       ip_rules                   = var.network_rules.ip_rules
       virtual_network_subnet_ids = var.network_rules.subnet_ids
+
+      dynamic "private_link_access" {
+        for_each = null != var.network_rules.private_link_endpoint_ids ? toset(var.network_rules.private_link_endpoint_ids) : []
+        content {
+          endpoint_resource_id = private_link_access.value
+        }
+      }
     }
   }
 }

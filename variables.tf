@@ -99,7 +99,12 @@ variable "static_website" {
 
 variable "network_rules" {
   description = "Network rules restricing access to the storage account."
-  type        = object({ bypass = list(string), ip_rules = list(string), subnet_ids = list(string) })
+  type        = object({
+    bypass                      = list(string),
+    ip_rules                    = list(string),
+    subnet_ids                  = list(string),
+    private_link_endpoint_ids   = optional(list(string))
+  })
   default     = null
 }
 
