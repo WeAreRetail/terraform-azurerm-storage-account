@@ -37,56 +37,61 @@ variable "description" {
 }
 
 variable "account_kind" {
+  type        = string
   description = "The type of storage account. Valid options are BlobStorage, BlockBlobStorage, FileStorage, Storage and StorageV2."
   default     = "StorageV2"
 }
 
 variable "skuname" {
+  type        = string
   description = "The SKUs supported by Microsoft Azure Storage. Valid options are Premium_LRS, Premium_ZRS, Standard_GRS, Standard_GZRS, Standard_LRS, Standard_RAGRS, Standard_RAGZRS, Standard_ZRS"
   default     = "Standard_LRS"
 }
 
-variable "access_tier" {
-  description = "Defines the access tier for BlobStorage and StorageV2 accounts. Valid options are Hot and Cool."
-  default     = "Hot"
-}
-
 variable "blob_soft_delete_retention_days" {
+  type        = number
   description = "Specifies the number of days that the blob should be retained, between `1` and `365` days. Defaults to `7`"
   default     = 7
 }
 
 variable "container_soft_delete_retention_days" {
+  type        = number
   description = "Specifies the number of days that the blob should be retained, between `1` and `365` days. Defaults to `7`"
   default     = 7
 }
 
 variable "enable_versioning" {
+  type        = bool
   description = "Is blob versioning enabled? Default to `false`"
   default     = false
 }
 
 variable "last_access_time_enabled" {
+  type        = bool
   description = "Is the last access time based tracking enabled? Default to `false`"
   default     = false
 }
 
 variable "change_feed_enabled" {
+  type        = bool
   description = "Is the blob service properties for change feed events enabled ?"
   default     = false
 }
 
 variable "enable_advanced_threat_protection" {
+  type        = bool
   description = "Is advanced threat protection enabled."
   default     = false
 }
 
 variable "is_hns_enabled" {
+  type        = bool
   description = "Is Hierarchical namespace enabled. This can only be true when sku is Standard or when account_tier is Premium and account_kind is BlockBlobStorage"
   default     = false
 }
 
 variable "shared_access_key_enabled" {
+  type        = bool
   description = "Indicates whether the storage account permits requests to be authorized with the account access key via Shared Key. If false, then all requests, including shared access signatures, must be authorized with Azure Active Directory (Azure AD)."
   default     = true
 }
@@ -139,6 +144,7 @@ variable "caf_prefixes" {
 }
 
 variable "custom_blob_properties_enabled" {
-  type    = bool
-  default = false
+  type        = bool
+  default     = false
+  description = "Specifies whether custom blob properties are enabled."
 }
