@@ -31,6 +31,7 @@ resource "azurerm_storage_account" "self" {
   location                        = local.location
   account_kind                    = var.account_kind
   account_tier                    = local.account_tier
+  access_tier                     = contains(["BlobStorage", "FileStorage", "StorageV2"], var.account_kind) ? var.access_tier : null
   account_replication_type        = local.account_replication_type
   https_traffic_only_enabled      = true
   min_tls_version                 = "TLS1_2"
