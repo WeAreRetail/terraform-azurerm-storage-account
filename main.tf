@@ -94,14 +94,14 @@ resource "azurerm_advanced_threat_protection" "atp" {
 resource "azurerm_storage_container" "container" {
   count                 = length(var.containers_list)
   name                  = var.containers_list[count.index].name
-  storage_account_name  = azurerm_storage_account.self.name
+  storage_account_id    = azurerm_storage_account.self.id
   container_access_type = var.containers_list[count.index].access_type
 }
 
 resource "azurerm_storage_share" "fileshare" {
   count                = length(var.file_shares)
   name                 = var.file_shares[count.index].name
-  storage_account_name = azurerm_storage_account.self.name
+  storage_account_id = azurerm_storage_account.self.id
   quota                = var.file_shares[count.index].quota
 }
 
