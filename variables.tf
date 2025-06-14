@@ -103,6 +103,12 @@ variable "is_hns_enabled" {
   default     = false
 }
 
+variable "sftp_enabled" {
+  type        = bool
+  description = "Enable SFTP for the storage account. SFTP support requires `is_hns_enabled` set to `true`"
+  default     = false
+}
+
 variable "last_access_time_enabled" {
   type        = bool
   description = "Is the last access time based tracking enabled? Default to `false`"

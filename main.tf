@@ -39,6 +39,7 @@ resource "azurerm_storage_account" "self" {
   tags                            = local.tags
   shared_access_key_enabled       = var.shared_access_key_enabled
   is_hns_enabled                  = var.is_hns_enabled
+  sftp_enabled                    = var.sftp_enabled
 
   dynamic "static_website" {
     for_each = var.static_website != null ? ["true"] : []
