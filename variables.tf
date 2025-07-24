@@ -1,3 +1,25 @@
+# ==============================================================================
+# MANDATORY VARIABLES (no default values)
+# ==============================================================================
+
+variable "instance_index" {
+  type = number
+  validation {
+    condition     = var.instance_index > 0 && var.instance_index < 100
+    error_message = "Must be a 2 dights number."
+  }
+  description = "Resource type index on the resource group."
+}
+
+variable "resource_group_name" {
+  type        = string
+  description = "Specifies the parent resource group name."
+}
+
+# ==============================================================================
+# OPTIONAL VARIABLES (with default values)
+# ==============================================================================
+
 variable "access_tier" {
   type        = string
   default     = "Hot"
@@ -38,12 +60,6 @@ variable "containers_list" {
   description = "List of containers to create and their access levels."
   type        = list(object({ name = string, access_type = string }))
   default     = []
-}
-
-variable "custom_blob_properties_enabled" {
-  type        = bool
-  default     = false
-  description = "Specifies whether custom blob properties are enabled."
 }
 
 variable "custom_location" {
@@ -88,24 +104,15 @@ variable "file_shares" {
   default     = []
 }
 
-variable "instance_index" {
-  type = number
-  validation {
-    condition     = var.instance_index > 0 && var.instance_index < 100
-    error_message = "Must be a 2 dights number."
-  }
-  description = "Resource type index on the resource group."
+variable "hns_soft_delete_enabled" {
+  type        = bool
+  default     = false
+  description = "Specifies whether hierarchical namespace soft delete is enabled."
 }
 
 variable "is_hns_enabled" {
   type        = bool
   description = "Is Hierarchical namespace enabled. This can only be true when sku is Standard or when account_tier is Premium and account_kind is BlockBlobStorage"
-  default     = false
-}
-
-variable "sftp_enabled" {
-  type        = bool
-  description = "Enable SFTP for the storage account. SFTP support requires `is_hns_enabled` set to `true`"
   default     = false
 }
 
@@ -132,9 +139,10 @@ variable "queues" {
   default     = []
 }
 
-variable "resource_group_name" {
-  type        = string
-  description = "Specifies the parent resource group name."
+variable "sftp_enabled" {
+  type        = bool
+  description = "Enable SFTP for the storage account. SFTP support requires `is_hns_enabled` set to `true`"
+  default     = false
 }
 
 variable "shared_access_key_enabled" {

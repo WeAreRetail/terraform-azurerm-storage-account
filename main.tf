@@ -50,7 +50,9 @@ resource "azurerm_storage_account" "self" {
   }
 
   dynamic "blob_properties" {
-    for_each = var.is_hns_enabled && !var.custom_blob_properties_enabled ? [] : ["true"]
+    # No blob_properties for HNS if HNS is enabled but soft delete is not enabled
+    for_each = var.hns_soft_delete_enabled || !var.is_hns_enabled ? ["true"] : []
+
     content {
       delete_retention_policy {
         days = var.blob_soft_delete_retention_days
@@ -100,10 +102,10 @@ resource "azurerm_storage_container" "container" {
 }
 
 resource "azurerm_storage_share" "fileshare" {
-  count                = length(var.file_shares)
-  name                 = var.file_shares[count.index].name
+  count              = length(var.file_shares)
+  name               = var.file_shares[count.index].name
   storage_account_id = azurerm_storage_account.self.id
-  quota                = var.file_shares[count.index].quota
+  quota              = var.file_shares[count.index].quota
 }
 
 resource "azurerm_storage_table" "tables" {

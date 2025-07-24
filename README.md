@@ -84,7 +84,6 @@ module "aware_storage_account" {
 | <a name="input_change_feed_enabled"></a> [change\_feed\_enabled](#input\_change\_feed\_enabled) | Is the blob service properties for change feed events enabled ? | `bool` | `false` | no |
 | <a name="input_container_soft_delete_retention_days"></a> [container\_soft\_delete\_retention\_days](#input\_container\_soft\_delete\_retention\_days) | Specifies the number of days that the blob should be retained, between `1` and `365` days. Defaults to `7` | `number` | `7` | no |
 | <a name="input_containers_list"></a> [containers\_list](#input\_containers\_list) | List of containers to create and their access levels. | `list(object({ name = string, access_type = string }))` | `[]` | no |
-| <a name="input_custom_blob_properties_enabled"></a> [custom\_blob\_properties\_enabled](#input\_custom\_blob\_properties\_enabled) | Specifies whether custom blob properties are enabled. | `bool` | `false` | no |
 | <a name="input_custom_location"></a> [custom\_location](#input\_custom\_location) | Specifies a custom location for the resource. | `string` | `""` | no |
 | <a name="input_custom_name"></a> [custom\_name](#input\_custom\_name) | Specifies a custom name for the resource. | `string` | `""` | no |
 | <a name="input_custom_tags"></a> [custom\_tags](#input\_custom\_tags) | The custom tags to add on the resource. | `map(string)` | `{}` | no |
@@ -92,6 +91,7 @@ module "aware_storage_account" {
 | <a name="input_enable_advanced_threat_protection"></a> [enable\_advanced\_threat\_protection](#input\_enable\_advanced\_threat\_protection) | Is advanced threat protection enabled. | `bool` | `false` | no |
 | <a name="input_enable_versioning"></a> [enable\_versioning](#input\_enable\_versioning) | Is blob versioning enabled? Default to `false` | `bool` | `false` | no |
 | <a name="input_file_shares"></a> [file\_shares](#input\_file\_shares) | List of file shares to create and their quotas. | `list(object({ name = string, quota = number }))` | `[]` | no |
+| <a name="input_hns_soft_delete_enabled"></a> [hns\_soft\_delete\_enabled](#input\_hns\_soft\_delete\_enabled) | Specifies whether hierarchical namespace soft delete is enabled. | `bool` | `false` | no |
 | <a name="input_is_hns_enabled"></a> [is\_hns\_enabled](#input\_is\_hns\_enabled) | Is Hierarchical namespace enabled. This can only be true when sku is Standard or when account\_tier is Premium and account\_kind is BlockBlobStorage | `bool` | `false` | no |
 | <a name="input_last_access_time_enabled"></a> [last\_access\_time\_enabled](#input\_last\_access\_time\_enabled) | Is the last access time based tracking enabled? Default to `false` | `bool` | `false` | no |
 | <a name="input_network_rules"></a> [network\_rules](#input\_network\_rules) | Network rules restricing access to the storage account. | <pre>object({<br/>    bypass                    = list(string),<br/>    ip_rules                  = list(string),<br/>    subnet_ids                = list(string),<br/>    private_link_endpoint_ids = optional(list(string))<br/>  })</pre> | `null` | no |
