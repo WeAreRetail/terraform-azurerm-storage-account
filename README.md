@@ -87,6 +87,7 @@ module "aware_storage_account" {
 | <a name="input_custom_location"></a> [custom\_location](#input\_custom\_location) | Specifies a custom location for the resource. | `string` | `""` | no |
 | <a name="input_custom_name"></a> [custom\_name](#input\_custom\_name) | Specifies a custom name for the resource. | `string` | `""` | no |
 | <a name="input_custom_tags"></a> [custom\_tags](#input\_custom\_tags) | The custom tags to add on the resource. | `map(string)` | `{}` | no |
+| <a name="input_deploy_advanced_threat_protection_resource"></a> [deploy\_advanced\_threat\_protection\_resource](#input\_deploy\_advanced\_threat\_protection\_resource) | Specifies whether to deploy the advanced threat protection resource. | `bool` | `true` | no |
 | <a name="input_description"></a> [description](#input\_description) | The resource description. | `string` | `""` | no |
 | <a name="input_enable_advanced_threat_protection"></a> [enable\_advanced\_threat\_protection](#input\_enable\_advanced\_threat\_protection) | Is advanced threat protection enabled. | `bool` | `false` | no |
 | <a name="input_enable_versioning"></a> [enable\_versioning](#input\_enable\_versioning) | Is blob versioning enabled? Default to `false` | `bool` | `false` | no |

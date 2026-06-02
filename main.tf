@@ -90,6 +90,7 @@ resource "azurerm_storage_account" "self" {
 
 
 resource "azurerm_advanced_threat_protection" "atp" {
+  count              = var.deploy_advanced_threat_protection_resource ? 1 : 0
   target_resource_id = azurerm_storage_account.self.id
   enabled            = var.enable_advanced_threat_protection
 }

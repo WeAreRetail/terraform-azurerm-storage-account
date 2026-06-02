@@ -86,6 +86,12 @@ variable "description" {
   description = "The resource description."
 }
 
+variable "deploy_advanced_threat_protection_resource" {
+  type        = bool
+  description = "Specifies whether to deploy the advanced threat protection resource."
+  default     = true
+}
+
 variable "enable_advanced_threat_protection" {
   type        = bool
   description = "Is advanced threat protection enabled."
