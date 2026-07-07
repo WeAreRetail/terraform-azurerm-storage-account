@@ -110,13 +110,39 @@ resource "azurerm_storage_share" "fileshare" {
 }
 
 resource "azurerm_storage_table" "tables" {
-  count                = length(var.tables)
-  name                 = var.tables[count.index]
-  storage_account_name = azurerm_storage_account.self.name
+  count              = length(var.tables)
+  name               = var.tables[count.index]
+  storage_account_id = azurerm_storage_account.self.id
 }
 
 resource "azurerm_storage_queue" "queues" {
-  count                = length(var.queues)
-  name                 = var.queues[count.index]
-  storage_account_name = azurerm_storage_account.self.name
+  count              = length(var.queues)
+  name               = var.queues[count.index]
+  storage_account_id = azurerm_storage_account.self.id
+}
+
+resource "azurerm_storage_management_policy" "self" {
+  count              = var.lifecycle_policy_rules != null ? 1 : 0
+  storage_account_id = azurerm_storage_account.self.id
+
+  dynamic "rule" {
+    for_each = var.lifecycle_policy_rules
+    content {
+      name    = rule.value.name
+      enabled = rule.value.enabled
+
+      filters {
+        prefix_match = rule.value.filters.prefix_match
+        blob_types   = rule.value.filters.blob_types
+      }
+
+      actions {
+        base_blob {
+          delete_after_days_since_modification_greater_than          = rule.value.actions.delete_after_days_since_modification
+          tier_to_cool_after_days_since_modification_greater_than    = rule.value.actions.tier_to_cool_after_days_since_modification
+          tier_to_archive_after_days_since_modification_greater_than = rule.value.actions.tier_to_archive_after_days_since_modification
+        }
+      }
+    }
+  }
 }

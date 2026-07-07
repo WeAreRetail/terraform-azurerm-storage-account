@@ -174,3 +174,39 @@ variable "tables" {
   type        = list(string)
   default     = []
 }
+
+variable "lifecycle_policy_rules" {
+  description = <<-EOT
+    List of lifecycle management rules to apply to the storage account.
+
+    Each rule supports:
+    - name    : unique identifier for the rule
+    - enabled : defaults to true
+    - filters : (optional) scope the rule to specific blob prefixes and/or types
+    - actions : at least one action must be specified (delete or tier transition)
+  EOT
+  type = list(object({
+    name    = string
+    enabled = bool
+    filters = optional(object({
+      prefix_match = optional(list(string), [])
+      blob_types   = optional(list(string), ["blockBlob"])
+    }), {})
+    actions = object({
+      delete_after_days_since_modification          = optional(number)
+      tier_to_cool_after_days_since_modification    = optional(number)
+      tier_to_archive_after_days_since_modification = optional(number)
+    })
+  }))
+  default = []
+
+  validation {
+    condition = var.lifecycle_policy_rules == null || alltrue([
+      for r in coalesce(var.lifecycle_policy_rules, []) :
+      r.actions.delete_after_days_since_modification != null ||
+      r.actions.tier_to_cool_after_days_since_modification != null ||
+      r.actions.tier_to_archive_after_days_since_modification != null
+    ])
+    error_message = "Each lifecycle rule must define at least one action (delete, tier to cool, or tier to archive)."
+  }
+}
