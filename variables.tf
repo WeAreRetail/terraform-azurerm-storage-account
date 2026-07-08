@@ -198,7 +198,7 @@ variable "lifecycle_policy_rules" {
       tier_to_archive_after_days_since_modification = optional(number)
     })
   }))
-  default = []
+  default = null
 
   validation {
     condition = var.lifecycle_policy_rules == null || alltrue([
