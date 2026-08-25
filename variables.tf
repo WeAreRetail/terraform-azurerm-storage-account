@@ -193,9 +193,11 @@ variable "lifecycle_policy_rules" {
       blob_types   = optional(list(string), ["blockBlob"])
     }), {})
     actions = object({
-      delete_after_days_since_modification          = optional(number)
-      tier_to_cool_after_days_since_modification    = optional(number)
-      tier_to_archive_after_days_since_modification = optional(number)
+      delete_after_days_since_modification               = optional(number)
+      tier_to_cool_after_days_since_modification          = optional(number)
+      tier_to_archive_after_days_since_modification       = optional(number)
+      tier_to_cool_after_days_since_last_access_time      = optional(number)
+      tier_to_archive_after_days_since_last_access_time   = optional(number)
     })
   }))
   default = null
@@ -205,7 +207,9 @@ variable "lifecycle_policy_rules" {
       for r in coalesce(var.lifecycle_policy_rules, []) :
       r.actions.delete_after_days_since_modification != null ||
       r.actions.tier_to_cool_after_days_since_modification != null ||
-      r.actions.tier_to_archive_after_days_since_modification != null
+      r.actions.tier_to_archive_after_days_since_modification != null ||
+      r.actions.tier_to_cool_after_days_since_last_access_time != null ||
+      r.actions.tier_to_archive_after_days_since_last_access_time != null
     ])
     error_message = "Each lifecycle rule must define at least one action (delete, tier to cool, or tier to archive)."
   }

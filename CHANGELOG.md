@@ -6,6 +6,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.4.2] - 2026-08-24
+
+### Added
+
+- `tier_to_cool_after_days_since_last_access_time` and `tier_to_archive_after_days_since_last_access_time` optional actions in `lifecycle_policy_rules`, allowing blob tiering rules to be based on last-access time instead of only last-modified time.
+
 ## [3.4.1] - 2026-07-08
 
 ### Fixed
