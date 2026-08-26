@@ -193,11 +193,11 @@ variable "lifecycle_policy_rules" {
       blob_types   = optional(list(string), ["blockBlob"])
     }), {})
     actions = object({
-      delete_after_days_since_modification               = optional(number)
-      tier_to_cool_after_days_since_modification          = optional(number)
-      tier_to_archive_after_days_since_modification       = optional(number)
-      tier_to_cool_after_days_since_last_access_time      = optional(number)
-      tier_to_archive_after_days_since_last_access_time   = optional(number)
+      delete_after_days_since_modification              = optional(number)
+      tier_to_cool_after_days_since_modification        = optional(number)
+      tier_to_archive_after_days_since_modification     = optional(number)
+      tier_to_cool_after_days_since_last_access_time    = optional(number)
+      tier_to_archive_after_days_since_last_access_time = optional(number)
     })
   }))
   default = null

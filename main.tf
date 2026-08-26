@@ -2,12 +2,13 @@ locals {
   specific_tags = {
     "description" = var.description
   }
-  account_tier             = (var.account_kind == "FileStorage" ? "Premium" : split("_", var.skuname)[0])
-  account_replication_type = (local.account_tier == "Premium" ? "LRS" : split("_", var.skuname)[1])
-  location                 = coalesce(var.custom_location, data.azurerm_resource_group.parent_group.location)
-  parent_tags              = { for n, v in data.azurerm_resource_group.parent_group.tags : n => v if n != "description" }
-  resource_name            = coalesce(var.custom_name, azurecaf_name.self.result)
-  tags                     = { for n, v in merge(local.parent_tags, local.specific_tags, var.custom_tags) : n => v if v != "" }
+  account_tier                    = (var.account_kind == "FileStorage" ? "Premium" : split("_", var.skuname)[0])
+  account_replication_type        = (local.account_tier == "Premium" ? "LRS" : split("_", var.skuname)[1])
+  location                        = coalesce(var.custom_location, data.azurerm_resource_group.parent_group.location)
+  parent_tags                     = { for n, v in data.azurerm_resource_group.parent_group.tags : n => v if n != "description" }
+  resource_name                   = coalesce(var.custom_name, azurecaf_name.self.result)
+  tags                            = { for n, v in merge(local.parent_tags, local.specific_tags, var.custom_tags) : n => v if v != "" }
+  allow_nested_items_to_be_public = var.enable_advanced_threat_protection || var.static_website != null
 }
 
 data "azurerm_resource_group" "parent_group" {
@@ -35,19 +36,11 @@ resource "azurerm_storage_account" "self" {
   account_replication_type        = local.account_replication_type
   https_traffic_only_enabled      = true
   min_tls_version                 = "TLS1_2"
-  allow_nested_items_to_be_public = var.enable_advanced_threat_protection == true ? true : false
+  allow_nested_items_to_be_public = local.allow_nested_items_to_be_public
   tags                            = local.tags
   shared_access_key_enabled       = var.shared_access_key_enabled
   is_hns_enabled                  = var.is_hns_enabled
   sftp_enabled                    = var.sftp_enabled
-
-  dynamic "static_website" {
-    for_each = var.static_website != null ? ["true"] : []
-    content {
-      index_document     = var.static_website.index_document
-      error_404_document = var.static_website.error_404_document
-    }
-  }
 
   dynamic "blob_properties" {
     # No blob_properties for HNS if HNS is enabled but soft delete is not enabled
@@ -88,6 +81,12 @@ resource "azurerm_storage_account" "self" {
   }
 }
 
+resource "azurerm_storage_account_static_website" "self" {
+  count              = var.static_website != null ? 1 : 0
+  storage_account_id = azurerm_storage_account.self.id
+  index_document     = var.static_website.index_document
+  error_404_document = var.static_website.error_404_document
+}
 
 resource "azurerm_advanced_threat_protection" "atp" {
   count              = var.deploy_advanced_threat_protection_resource ? 1 : 0
@@ -138,11 +137,11 @@ resource "azurerm_storage_management_policy" "self" {
 
       actions {
         base_blob {
-          delete_after_days_since_modification_greater_than               = rule.value.actions.delete_after_days_since_modification
-          tier_to_cool_after_days_since_modification_greater_than         = rule.value.actions.tier_to_cool_after_days_since_modification
-          tier_to_archive_after_days_since_modification_greater_than      = rule.value.actions.tier_to_archive_after_days_since_modification
-          tier_to_cool_after_days_since_last_access_time_greater_than     = rule.value.actions.tier_to_cool_after_days_since_last_access_time
-          tier_to_archive_after_days_since_last_access_time_greater_than  = rule.value.actions.tier_to_archive_after_days_since_last_access_time
+          delete_after_days_since_modification_greater_than              = rule.value.actions.delete_after_days_since_modification
+          tier_to_cool_after_days_since_modification_greater_than        = rule.value.actions.tier_to_cool_after_days_since_modification
+          tier_to_archive_after_days_since_modification_greater_than     = rule.value.actions.tier_to_archive_after_days_since_modification
+          tier_to_cool_after_days_since_last_access_time_greater_than    = rule.value.actions.tier_to_cool_after_days_since_last_access_time
+          tier_to_archive_after_days_since_last_access_time_greater_than = rule.value.actions.tier_to_archive_after_days_since_last_access_time
         }
       }
     }
