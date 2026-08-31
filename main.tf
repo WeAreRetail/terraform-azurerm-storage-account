@@ -27,6 +27,10 @@ resource "azurecaf_name" "self" {
 }
 
 resource "azurerm_storage_account" "self" {
+  lifecycle {
+    prevent_destroy = true
+  }
+
   name                            = local.resource_name
   resource_group_name             = data.azurerm_resource_group.parent_group.name
   location                        = local.location
