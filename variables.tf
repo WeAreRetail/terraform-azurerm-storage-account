@@ -124,7 +124,7 @@ variable "is_hns_enabled" {
 
 variable "last_access_time_enabled" {
   type        = bool
-  description = "Is the last access time based tracking enabled? Default to `false`"
+  description = "Is the last access time based tracking enabled? Also applies to HNS accounts without `hns_soft_delete_enabled`. Default to `false`"
   default     = false
 }
 

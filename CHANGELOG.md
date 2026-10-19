@@ -6,6 +6,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.8.0] - 2026-10-19
+
+### Fixed
+
+- `last_access_time_enabled` was ignored on HNS accounts unless `hns_soft_delete_enabled` was also set. `blob_properties` is now emitted for HNS accounts with last access time tracking enabled, without the soft delete retention policies.
+
+### Important Change
+
+- On HNS accounts with `last_access_time_enabled = true` and no `hns_soft_delete_enabled`, the blob service properties are now managed by Terraform: blob service settings changed outside Terraform (soft delete, CORS) are reset to the module values.
+
 ## [3.7.0] - 2026-10-13
 
 ### Added

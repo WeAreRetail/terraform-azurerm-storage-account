@@ -47,15 +47,22 @@ resource "azurerm_storage_account" "self" {
   sftp_enabled                    = var.sftp_enabled
 
   dynamic "blob_properties" {
-    # No blob_properties for HNS if HNS is enabled but soft delete is not enabled
-    for_each = var.hns_soft_delete_enabled || !var.is_hns_enabled ? ["true"] : []
+    # HNS accounts only get blob_properties when HNS soft delete or last access time tracking is enabled
+    for_each = var.hns_soft_delete_enabled || !var.is_hns_enabled || var.last_access_time_enabled ? ["true"] : []
 
     content {
-      delete_retention_policy {
-        days = var.blob_soft_delete_retention_days
+      # No soft delete retention policies for HNS if HNS soft delete is not enabled
+      dynamic "delete_retention_policy" {
+        for_each = var.hns_soft_delete_enabled || !var.is_hns_enabled ? ["true"] : []
+        content {
+          days = var.blob_soft_delete_retention_days
+        }
       }
-      container_delete_retention_policy {
-        days = var.container_soft_delete_retention_days
+      dynamic "container_delete_retention_policy" {
+        for_each = var.hns_soft_delete_enabled || !var.is_hns_enabled ? ["true"] : []
+        content {
+          days = var.container_soft_delete_retention_days
+        }
       }
       versioning_enabled       = var.enable_versioning
       last_access_time_enabled = var.last_access_time_enabled
