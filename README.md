@@ -66,7 +66,7 @@ module "aware_storage_account" {
 #### Requirements
 
 | Name | Version |
-|------|---------|
+| ---- | ------- |
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0.0 |
 | <a name="requirement_azurecaf"></a> [azurecaf](#requirement\_azurecaf) | >= 1.2.28 |
 | <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | >= 5.0.0 |
@@ -74,7 +74,7 @@ module "aware_storage_account" {
 #### Inputs
 
 | Name | Description | Type | Default | Required |
-|------|-------------|------|---------|:--------:|
+| ---- | ----------- | ---- | ------- | :------: |
 | <a name="input_instance_index"></a> [instance\_index](#input\_instance\_index) | Resource type index on the resource group. | `number` | n/a | yes |
 | <a name="input_resource_group_name"></a> [resource\_group\_name](#input\_resource\_group\_name) | Specifies the parent resource group name. | `string` | n/a | yes |
 | <a name="input_access_tier"></a> [access\_tier](#input\_access\_tier) | The access tier for the storage account. Valid options are Hot and Cool. | `string` | `"Hot"` | no |
@@ -107,7 +107,7 @@ module "aware_storage_account" {
 #### Outputs
 
 | Name | Description |
-|------|-------------|
+| ---- | ----------- |
 | <a name="output_containers"></a> [containers](#output\_containers) | Map of containers. |
 | <a name="output_file_shares"></a> [file\_shares](#output\_file\_shares) | Map of Storage SMB file shares. |
 | <a name="output_queues"></a> [queues](#output\_queues) | Map of Storage queues. |
